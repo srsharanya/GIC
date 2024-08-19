@@ -34,14 +34,14 @@ public class SeatManagerImpl implements SeatManager {
     @Override
     public void bookSeats(List<Seat> seats) {
         for (Seat seat : seats) {
-            seatingChart[seat.getRow()][seat.getColumn()] = SeatState.BOOKED;
+            seatingChart[seat.row()][seat.column()] = SeatState.BOOKED;
         }
     }
 
     @Override
     public void clearSeats(List<Seat> seats) {
         for (Seat seat : seats) {
-            seatingChart[seat.getRow()][seat.getColumn()] = SeatState.AVAILABLE;
+            seatingChart[seat.row()][seat.column()] = SeatState.AVAILABLE;
         }
     }
 

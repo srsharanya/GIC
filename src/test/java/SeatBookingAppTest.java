@@ -1,6 +1,5 @@
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.List;
@@ -72,10 +71,8 @@ public class SeatBookingAppTest {
         Optional<List<Seat>> booking = app.getBookingManager().getBooking("GIC0001");
         assertTrue(booking.isPresent(), "Booking with ID GIC0001 should exist.");
 
-        assertThrows(BookingException.class, () -> {
-            app.getBookingManager().getBooking("XYZ")
-                    .orElseThrow(() -> new BookingException("Booking ID not found: XYZ"));
-        }, "Expected BookingException to be thrown for non-existent booking ID.");
+        assertThrows(BookingException.class, () -> app.getBookingManager().getBooking("XYZ")
+                .orElseThrow(() -> new BookingException("Booking ID not found: XYZ")), "Expected BookingException to be thrown for non-existent booking ID.");
     }
 
 }

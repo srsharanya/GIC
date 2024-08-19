@@ -9,7 +9,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * Manages booking records and provides methods to create, retrieve, and modify bookings.
  */
 public class BookingManagerImpl implements BookingManager {
-    private final Map<String, List<Seat>> bookings = new ConcurrentHashMap();
+    private final Map<String, List<Seat>> bookings = new ConcurrentHashMap<>();
     private static final AtomicInteger counter = new AtomicInteger(1);
 
 

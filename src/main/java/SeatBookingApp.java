@@ -18,18 +18,6 @@ public class SeatBookingApp {
         return bookingManager;
     }
 
-    public Scanner getScanner() {
-        return scanner;
-    }
-
-    // Constructor
-    public SeatBookingApp(SeatManager seatManager, BookingManager bookingManager, Movie movie) {
-        this.seatManager = seatManager;
-        this.bookingManager = bookingManager;
-        this.movie = movie;
-        this.scanner = new Scanner(System.in);
-    }
-
     public SeatBookingApp(Scanner scanner) {
         this.scanner = scanner;
     }
@@ -117,12 +105,9 @@ public class SeatBookingApp {
             return;
         }
 
-
         List<Seat> bookedSeats = new ArrayList<>(Objects.requireNonNull(findSeats(numTickets)));
-
         String bookingId = bookingManager.createBooking(bookedSeats);
         seatManager.bookSeats(bookedSeats);
-
         displayBookingDetails(numTickets, bookingId);
         handleUserResponse(bookingId);
     }
@@ -314,7 +299,7 @@ public class SeatBookingApp {
 
     private  void markSeatsAsViewed(SeatState[][] chart, List<Seat> seats) {
         for (Seat seat : seats) {
-            chart[seat.getRow()][seat.getColumn()] = SeatState.TEMP_BOOKED;
+            chart[seat.row()][seat.column()] = SeatState.TEMP_BOOKED;
         }
     }
 
@@ -346,13 +331,10 @@ public class SeatBookingApp {
             }
             if (newBookedSeats.size() < numSeats) {
                 startCol = 0;
-                startRow = i - 1;
             } else {
                 seatsPlaced = true;
             }
         }
         return newBookedSeats;
     }
-
-
 }
